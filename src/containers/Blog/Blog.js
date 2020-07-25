@@ -4,7 +4,10 @@ import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
-import axios from 'axios';
+// import axios from 'axios';
+// Using CUstom Axios instance
+// This page will now use custom axios instance, while other pages will use GLobal Instance
+import axios from '../../axios';
 
 class Blog extends Component {
 
