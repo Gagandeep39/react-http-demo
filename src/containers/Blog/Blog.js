@@ -10,7 +10,8 @@ class Blog extends Component {
 
   state = {
     posts: [],
-    selectedPostId: null
+    selectedPostId: null,
+    error: false
   }
 
   // Best place to make http request
@@ -34,7 +35,9 @@ class Blog extends Component {
         posts: updatedPosts,
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      this.setState({error: true})
+    })
   }
 
   postClickHandler = (id) => {
@@ -45,9 +48,12 @@ class Blog extends Component {
 
   render() {
 
-    const posts = this.state.posts.map(post => {
-      return <Post clicked={() => this.postClickHandler(post.id)} key={post.id} title={post.title} author={post.author}/>
-    })
+    let posts = <p style={{ textAlign: 'center' }}>Something went wrong</p>;
+    if(!this.state.error) {
+      posts = this.state.posts.map(post => {
+        return <Post clicked={() => this.postClickHandler(post.id)} key={post.id} title={post.title} author={post.author}/>
+      })
+    }
 
     return (
       <div>
