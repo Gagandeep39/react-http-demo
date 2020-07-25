@@ -34,6 +34,7 @@ class Blog extends Component {
         posts: updatedPosts,
       })
     })
+    .catch(error => console.log(error))
   }
 
   postClickHandler = (id) => {

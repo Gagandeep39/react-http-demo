@@ -18,7 +18,8 @@ class FullPost extends Component {
           .then((response) => {
             console.log(response);
             this.setState({ loadedPost: response.data });
-          });
+          })
+          .catch(error => console.log(error));
       }
     }
   }
@@ -28,6 +29,7 @@ class FullPost extends Component {
     .then(response => {
       console.log(response);
     })
+    .catch(error => console.log(error));
   }
 
   render() {
