@@ -3,6 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
+
+// Interceptor for all requests
+// We need to pass a function that will be executed for each re uests
+axios.interceptors.request.use(request => {
+  console.log(request);
+  return request;
+}, error => {
+  console.log(error);
+  // Return error to component if any pecific operation is to be performed there
+  return Promise.reject(error);
+});
+
+// Interceptors for all response
+axios.interceptors.response.use(response => {
+  console.log(response);
+  return response;
+}, error => {
+  console.log(error);
+  // Return error to component if any pecific operation is to be performed there
+  return Promise.reject(error);
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
