@@ -27,6 +27,10 @@ axios.interceptors.response.use(response => {
 });
 
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+// Addading a common header
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+// Adding header to specific requests eg. get or post requests
+axios.defaults.headers.post['Content-Type'] = "application/json"
 
 ReactDOM.render(
   <React.StrictMode>
