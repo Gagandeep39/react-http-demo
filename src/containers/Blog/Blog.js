@@ -9,7 +9,8 @@ import axios from 'axios';
 class Blog extends Component {
 
   state = {
-    posts: []
+    posts: [],
+    selectedPostId: null
   }
 
   // Best place to make http request
@@ -30,15 +31,21 @@ class Blog extends Component {
         }
       })
       this.setState({
-        posts: updatedPosts
+        posts: updatedPosts,
       })
+    })
+  }
+
+  postClickHandler = (id) => {
+    this.setState({
+      selectedPostId: id
     })
   }
 
   render() {
 
     const posts = this.state.posts.map(post => {
-      return <Post key={post.id} title={post.title} author={post.author}/>
+      return <Post clicked={() => this.postClickHandler(post.id)} key={post.id} title={post.title} author={post.author}/>
     })
 
     return (
@@ -50,7 +57,7 @@ class Blog extends Component {
           <Post /> */}
         </section>
         <section>
-          <FullPost />
+          <FullPost id={this.state.selectedPostId}/>
         </section>
         <section>
           <NewPost />
