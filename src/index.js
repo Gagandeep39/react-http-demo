@@ -26,6 +26,7 @@ axios.interceptors.response.use(response => {
   return Promise.reject(error);
 });
 
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -19,7 +19,7 @@ class Blog extends Component {
   componentDidMount() {
     // Executes asynchronously, hence cant be stored in a const variable
     // Returns a promise
-    axios.get('https://jsonplaceholder.typicode.com/posts')
+    axios.get('/posts')
     .then(response => {
       // console.log(response);
       // Selecting only 5 posts
