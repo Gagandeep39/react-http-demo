@@ -4,15 +4,41 @@ import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
+import axios from 'axios';
 
 class Blog extends Component {
+
+  state = {
+    posts: []
+  }
+
+  // Best place to make http request
+  // Component re reders if state changes in this part of lifecycle
+  componentDidMount() {
+    // Executes asynchronously, hence cant be stored in a const variable
+    // Returns a promise
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+    .then(response => {
+      // console.log(response);
+      this.setState({
+        posts: response.data
+      })
+    })
+  }
+
   render() {
+
+    const posts = this.state.posts.map(post => {
+      return <Post key={post.id} title={post.title}/>
+    })
+
     return (
       <div>
         <section className='Posts'>
+          {posts}
+          {/* <Post />
           <Post />
-          <Post />
-          <Post />
+          <Post /> */}
         </section>
         <section>
           <FullPost />
